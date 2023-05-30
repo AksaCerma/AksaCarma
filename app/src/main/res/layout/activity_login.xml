@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.login.LoginActivity">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewLogin"
+        android:id="@+id/textViewTitleLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -44,7 +44,7 @@
         app:startIconDrawable="@drawable/baseline_alternate_email_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogin">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleLogin">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

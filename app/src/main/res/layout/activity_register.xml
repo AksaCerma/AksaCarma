@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewLogin"
+        android:id="@+id/textViewTitleRegister"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -44,7 +44,7 @@
         app:startIconDrawable="@drawable/outline_account_circle_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogin">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleRegister">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <TextView
-        android:id="@+id/textviewRegister"
+        android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

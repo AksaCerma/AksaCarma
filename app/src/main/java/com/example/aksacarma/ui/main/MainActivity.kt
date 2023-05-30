@@ -1,7 +1,8 @@
-package com.example.aksacarma
+package com.example.aksacarma.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.aksacarma.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
