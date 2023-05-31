@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.map
 
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
+    // Home
     fun getUser(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
@@ -19,6 +20,8 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
             )
         }
     }
+
+    //
 
     companion object {
         @Volatile

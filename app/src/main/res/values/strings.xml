@@ -10,4 +10,9 @@
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
     <string name="textView_register">Register</string>
+    <string name="error_textField">Isi terlebih dahulu</string>
+    <string name="password_error">Minimal 8 karakter password</string>
+    <string name="success_register">Selamat Anda Berhasil Registrasi</string>
+<!--    <integer name="success_register">Selamat Anda Berhasil Registrasi</integer>-->
+    <string name="not_connected_internet">Tidak Terhubung ke Internet</string>
 </resources>

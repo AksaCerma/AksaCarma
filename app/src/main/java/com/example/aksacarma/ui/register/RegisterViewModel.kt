@@ -1,10 +1,22 @@
 package com.example.aksacarma.ui.register
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.aksacarma.model.UserPreferences
+import androidx.lifecycle.viewModelScope
+import com.example.aksacarma.data.remote.response.RegisterResponse
+import com.example.aksacarma.repository.UserRepository
+import com.example.aksacarma.ui.Event
+import kotlinx.coroutines.launch
 
-class RegisterViewModel(private val pref: UserPreferences) : ViewModel() {
+class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
 
-    fun register()
+    val registerResponse: LiveData<RegisterResponse> = repository.registerResponse
+    val isLoading: LiveData<Boolean> = repository.isLoading
+    val textToast: LiveData<Event<String>> = repository.textToast
+    fun getDataRegister(name: String, email: String, password: String) {
+        viewModelScope.launch {
+            repository.getDataRegister(name, email, password)
+        }
+    }
 
 }
