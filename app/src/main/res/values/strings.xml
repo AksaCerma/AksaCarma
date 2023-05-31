@@ -19,4 +19,7 @@
     <string name="title_camera">Kamera</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+    <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
+    <string name="button_camera">Ambil Dari Kamera</string>
+    <string name="button_galery">Ambil Dari Galery</string>
 </resources>
