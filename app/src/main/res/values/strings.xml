@@ -13,7 +13,7 @@
     <string name="error_textField">Isi terlebih dahulu</string>
     <string name="password_error">Minimal 8 karakter password</string>
     <string name="success_register">Selamat Anda Berhasil Registrasi</string>
-<!--    <integer name="success_register">Selamat Anda Berhasil Registrasi</integer>-->
+    <!--    <integer name="success_register">Selamat Anda Berhasil Registrasi</integer>-->
     <string name="not_connected_internet">Tidak Terhubung ke Internet</string>
     <string name="title_home">Home</string>
     <string name="title_camera">Kamera</string>
