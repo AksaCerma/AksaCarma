@@ -3,10 +3,13 @@ package com.example.aksacarma.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import com.example.aksacarma.data.remote.response.LoginResponse
 import com.example.aksacarma.data.remote.response.RegisterResponse
+import com.example.aksacarma.data.remote.retrofit.ApiService
+import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.model.UserPreferences
 import com.example.aksacarma.ui.Event
-import com.setyo.storyapp.api.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,13 +22,16 @@ class UserRepository constructor(
     private val _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
+    private val _loginResponse = MutableLiveData<LoginResponse>()
+    val loginResponse: LiveData<LoginResponse> = _loginResponse
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
 
-    fun getDataRegister(name: String, email: String, password: String) {
+    fun registerUser(name: String, email: String, password: String) {
         _isLoading.value = true
         val client = apiService.registerUser(name, email, password)
         client.enqueue(object : Callback<RegisterResponse> {
@@ -45,6 +51,44 @@ class UserRepository constructor(
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
+
+    fun loginUser(name: String, email: String) {
+        _isLoading.value = true
+        val client = apiService.loginUser(name, email)
+        client.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Login Berhasil")
+                    _loginResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Login")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getUser(): LiveData<UserModel> {
+        return preferences.getUser().asLiveData()
+    }
+
+    suspend fun getLoginUser(user: UserModel) {
+        preferences.getLoginUser(user)
+    }
+
+    suspend fun getToken() {
+        preferences.getToken()
+    }
+
+    suspend fun logoutUser() {
+        preferences.logoutUser()
     }
 
     companion object {

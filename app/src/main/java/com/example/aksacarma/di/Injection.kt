@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.aksacarma.data.remote.retrofit.ApiConfig
 import com.example.aksacarma.model.UserPreferences
 import com.example.aksacarma.repository.UserRepository
-import com.setyo.storyapp.api.ApiConfig
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("token")
 

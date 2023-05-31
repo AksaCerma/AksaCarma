@@ -1,4 +1,4 @@
-package com.setyo.storyapp.api
+package com.example.aksacarma.data.remote.retrofit
 
 import com.example.aksacarma.BuildConfig
 import okhttp3.OkHttpClient

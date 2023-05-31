@@ -15,4 +15,8 @@
     <string name="success_register">Selamat Anda Berhasil Registrasi</string>
 <!--    <integer name="success_register">Selamat Anda Berhasil Registrasi</integer>-->
     <string name="not_connected_internet">Tidak Terhubung ke Internet</string>
+    <string name="title_home">Home</string>
+    <string name="title_camera">Kamera</string>
+    <string name="title_history">History</string>
+    <string name="title_profile">Profile</string>
 </resources>

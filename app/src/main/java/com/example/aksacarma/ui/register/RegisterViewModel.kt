@@ -13,9 +13,15 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     val registerResponse: LiveData<RegisterResponse> = repository.registerResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
-    fun getDataRegister(name: String, email: String, password: String) {
+    fun registerUser(name: String, email: String, password: String) {
         viewModelScope.launch {
-            repository.getDataRegister(name, email, password)
+            repository.registerUser(name, email, password)
+        }
+    }
+
+    fun logoutUser() {
+        viewModelScope.launch {
+            repository.logoutUser()
         }
     }
 

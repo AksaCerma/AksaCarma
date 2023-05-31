@@ -45,6 +45,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupViewModel() {
         factory = ViewModelFactory.getInstance(this)
     }
+
     private fun setupAction() {
         binding.apply {
             buttonLogin.setOnClickListener {
@@ -81,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun postText() {
         binding.apply {
-            registerViewModel.getDataRegister(
+            registerViewModel.registerUser(
                 inputTextName.text.toString(),
                 inputTextEmail.text.toString(),
                 inputTextPassword.text.toString()

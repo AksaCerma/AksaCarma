@@ -3,10 +3,10 @@ package com.example.aksacarma.model
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-
 
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
@@ -21,7 +21,27 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    //
+    //Login
+    suspend fun getLoginUser(user: UserModel) {
+        dataStore.edit { preferences ->
+            preferences[NAME_KEY] = user.name
+            preferences[TOKEN_KEY] = user.token
+            preferences[STATE_KEY] = user.isLogin
+        }
+    }
+
+    suspend fun logoutUser() {
+        dataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
+
+    suspend fun getToken() {
+        dataStore.edit { preferences ->
+            preferences[STATE_KEY] = true
+        }
+    }
+
 
     companion object {
         @Volatile
