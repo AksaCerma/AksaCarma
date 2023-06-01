@@ -6,12 +6,12 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_camera"
         android:icon="@drawable/outline_filter_center_focus"
         android:title="@string/title_camera" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_history"
         android:icon="@drawable/baseline_list_alt"
         android:title="@string/title_history" />
 

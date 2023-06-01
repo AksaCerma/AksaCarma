@@ -24,5 +24,4 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
             repository.logoutUser()
         }
     }
-
 }

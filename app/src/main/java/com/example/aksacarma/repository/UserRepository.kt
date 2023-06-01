@@ -5,12 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.aksacarma.data.remote.response.LoginResponse
+import com.example.aksacarma.data.remote.response.PredictionResponse
 import com.example.aksacarma.data.remote.response.RegisterResponse
 import com.example.aksacarma.data.remote.retrofit.ApiConfig
 import com.example.aksacarma.data.remote.retrofit.ApiService
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.model.UserPreferences
 import com.example.aksacarma.ui.Event
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +28,9 @@ class UserRepository constructor(
 
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
+
+    private val _predictionResponse = MutableLiveData<PredictionResponse>()
+    val predictionResponse: LiveData<PredictionResponse> = _predictionResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -75,7 +81,7 @@ class UserRepository constructor(
             }
         })
     }
-
+    
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()
     }

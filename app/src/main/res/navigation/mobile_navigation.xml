@@ -11,6 +11,12 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"/>
 
+    <activity
+        android:id="@+id/navigation_camera"
+        android:name="com.example.aksacarma.ui.camera.CameraActivity"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home"/>
+
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.aksacarma.ui.profile.ProfileFragment"

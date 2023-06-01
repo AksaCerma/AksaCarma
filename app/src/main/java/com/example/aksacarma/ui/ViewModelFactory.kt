@@ -7,6 +7,7 @@ import com.example.aksacarma.di.Injection
 import com.example.aksacarma.repository.UserRepository
 import com.example.aksacarma.ui.login.LoginViewModel
 import com.example.aksacarma.ui.main.MainViewModel
+import com.example.aksacarma.ui.profile.ProfileViewModel
 import com.example.aksacarma.ui.register.RegisterViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -22,6 +23,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

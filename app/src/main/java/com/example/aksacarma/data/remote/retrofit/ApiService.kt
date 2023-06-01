@@ -1,12 +1,12 @@
 package com.example.aksacarma.data.remote.retrofit
 
 import com.example.aksacarma.data.remote.response.LoginResponse
+import com.example.aksacarma.data.remote.response.PredictionResponse
 import com.example.aksacarma.data.remote.response.RegisterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
     @POST("register")
@@ -22,4 +22,11 @@ interface ApiService {
         @Query("username") username: String,
         @Query("password") password: String
     ): Call<LoginResponse>
+
+    @Multipart
+    @POST("stories")
+    fun uploadImage(
+        @Header("api-key") token: String,
+        @Part file: MultipartBody.Part
+    ): Call<PredictionResponse>
 }
