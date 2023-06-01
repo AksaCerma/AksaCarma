@@ -16,7 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "API_URL", '"https://story-api.dicoding.dev/v1/"')
+        buildConfigField("String", "USER_TOKEN", '"wiGcWvyTbIrtbGDJsEK1o-jeJIWNt4WRJOP0spGDTmQ"')
+        buildConfigField("String", "API_URL", '"https://backend-api-gt74zv3z5q-et.a.run.app/"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -72,5 +73,9 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
 }

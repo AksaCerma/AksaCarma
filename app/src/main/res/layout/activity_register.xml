@@ -60,11 +60,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldEmail"
+            android:id="@+id/textFieldUsername"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="@string/inputText_email"
+            android:hint="@string/inputText_username"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="@color/white"
@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textFieldName">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTextEmail"
+                android:id="@+id/inputTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
@@ -96,7 +96,7 @@
             app:startIconDrawable="@drawable/outline_lock_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldEmail">
+            app:layout_constraintTop_toBottomOf="@+id/textFieldUsername">
 
             <com.example.aksacarma.ui.custom.CustomEditText
                 android:id="@+id/inputTextPassword"

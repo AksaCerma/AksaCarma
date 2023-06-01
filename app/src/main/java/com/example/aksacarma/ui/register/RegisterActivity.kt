@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+//        setupView()
         setupViewModel()
         setupAction()
     }
@@ -50,12 +50,12 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             buttonLogin.setOnClickListener {
                 val name = inputTextName.text.toString()
-                val email = inputTextEmail.text.toString()
-                val password = inputTextEmail.text.toString()
+                val email = inputTextUsername.text.toString()
+                val password = inputTextPassword.text.toString()
 
                 if (name.isEmpty() && email.isEmpty() && password.isEmpty()) {
                     inputTextName.error = getString(R.string.error_textField)
-                    inputTextEmail.error = getString(R.string.error_textField)
+                    inputTextUsername.error = getString(R.string.error_textField)
                     inputTextPassword.setError(getString(R.string.error_textField), null)
                 } else if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
                     showLoading()
@@ -81,11 +81,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun postText() {
+        val avatar = "https://cdn.jeyy.xyz/image/avatar_url_9f3ef1.png"
         binding.apply {
             registerViewModel.registerUser(
-                inputTextName.text.toString(),
-                inputTextEmail.text.toString(),
-                inputTextPassword.text.toString()
+                username = inputTextUsername.text.toString(),
+                password = inputTextPassword.text.toString(),
+                name = inputTextName.text.toString(),
+                avatar = avatar
             )
         }
     }

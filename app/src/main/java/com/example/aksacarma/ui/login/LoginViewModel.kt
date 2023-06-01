@@ -14,9 +14,9 @@ class LoginViewModel(private val repository: UserRepository): ViewModel() {
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
 
-    fun loginUser (name: String, email: String) {
+    fun loginUser (username: String, password: String) {
         viewModelScope.launch {
-            repository.loginUser(name, email)
+            repository.loginUser(username, password)
         }
     }
 

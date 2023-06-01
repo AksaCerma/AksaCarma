@@ -2,21 +2,23 @@
     <string name="app_name">AksaCarma</string>
     <string name="image_logo">image_logo</string>
     <string name="textView_login">Login</string>
-    <string name="inputText_email">Email ID</string>
+    <string name="inputText_username">Username</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
     <string name="button_login">Login</string>
     <string name="button_register">Register</string>
+    <string name="button_logout">Logout</string>
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
     <string name="textView_register">Register</string>
     <string name="error_textField">Isi terlebih dahulu</string>
     <string name="password_error">Minimal 8 karakter password</string>
-    <string name="success_register">Selamat Anda Berhasil Registrasi</string>
-    <!--    <integer name="success_register">Selamat Anda Berhasil Registrasi</integer>-->
-    <string name="not_connected_internet">Tidak Terhubung ke Internet</string>
     <string name="title_home">Home</string>
     <string name="title_camera">Kamera</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+    <string name="profile_name">Nama Profile</string>
+    <string name="initial_name">Hi, Aksa Carma</string>
+    <string name="profile_username">Nama Username</string>
+
 </resources>

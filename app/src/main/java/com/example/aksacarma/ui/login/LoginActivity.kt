@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+//        setupView()
         setupViewModel()
         setupAction()
 
@@ -53,11 +53,11 @@ class LoginActivity : AppCompatActivity() {
     private fun setupAction() {
        binding.apply {
            buttonLogin.setOnClickListener {
-               val email = inputTextEmail.text.toString()
+               val email = inputTextUsername.text.toString()
                val password = inputTextPassword.text.toString()
 
                if (email.isEmpty() && password.isEmpty()) {
-                   inputTextEmail.error = getString(R.string.error_textField)
+                   inputTextUsername.error = getString(R.string.error_textField)
                    inputTextPassword.setError(getString(R.string.error_textField), null)
                } else if (email.isNotEmpty() && password.isNotEmpty()) {
                    showLoading()
@@ -79,8 +79,8 @@ class LoginActivity : AppCompatActivity() {
     private fun postText() {
         binding.apply {
            loginViewModel.loginUser(
-                inputTextEmail.text.toString(),
-                inputTextPassword.text.toString()
+                username = inputTextUsername.text.toString(),
+                password = inputTextPassword.text.toString()
             )
         }
 

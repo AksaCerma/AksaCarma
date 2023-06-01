@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.aksacarma.data.remote.response.LoginResponse
 import com.example.aksacarma.data.remote.response.RegisterResponse
+import com.example.aksacarma.data.remote.retrofit.ApiConfig
 import com.example.aksacarma.data.remote.retrofit.ApiService
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.model.UserPreferences
@@ -31,9 +32,9 @@ class UserRepository constructor(
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
 
-    fun registerUser(name: String, email: String, password: String) {
+    fun registerUser(username: String, password: String, name: String, avatar: String) {
         _isLoading.value = true
-        val client = apiService.registerUser(name, email, password)
+        val client = ApiConfig.getApiService().registerUser(username, password, name, avatar)
         client.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 _isLoading.value = false
@@ -53,9 +54,9 @@ class UserRepository constructor(
         })
     }
 
-    fun loginUser(name: String, email: String) {
+    fun loginUser(username: String, password: String) {
         _isLoading.value = true
-        val client = apiService.loginUser(name, email)
+        val client = ApiConfig.getApiService().loginUser(username, password)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
