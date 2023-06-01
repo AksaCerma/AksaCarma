@@ -24,4 +24,6 @@
     <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
     <string name="button_camera">Ambil Dari Kamera</string>
     <string name="button_galery">Ambil Dari Galery</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
