@@ -6,4 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".ui.camera.CameraActivity">
 
+    <ImageView
+        android:id="@+id/cameraImageView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_camera" />
+
+    <TextView
+        android:id="@+id/cameraTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_camera"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="33dp"
+        android:alpha="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraImageView"/>
+
+    <Button
+        android:id="@+id/cameraButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/primary"
+        android:text="@string/button_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraTextView" />
+
+    <Button
+        android:id="@+id/galeryButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/primary"
+        android:text="@string/button_galery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraButton" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
