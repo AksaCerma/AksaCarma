@@ -40,7 +40,7 @@ class UserRepository constructor(
 
     fun registerUser(username: String, password: String, name: String, avatar: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().registerUser(username, password, name, avatar)
+        val client = apiService.registerUser(username, password, name, avatar)
         client.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 _isLoading.value = false
@@ -62,7 +62,7 @@ class UserRepository constructor(
 
     fun loginUser(username: String, password: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().loginUser(username, password)
+        val client = apiService.loginUser(username, password)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
@@ -81,7 +81,29 @@ class UserRepository constructor(
             }
         })
     }
-    
+
+    fun uploadImage(token: String, file:MultipartBody.Part) {
+        _isLoading.value = true
+        val client = apiService.uploadImage(token, file)
+        client.enqueue(object : Callback<PredictionResponse> {
+            override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+//                    _textToast.value = Event("Login Berhasil")
+                    _predictionResponse.value = response.body()
+                } else {
+//                    _textToast.value = Event("Gagal Login")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                _isLoading.value = false
+//                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()
     }

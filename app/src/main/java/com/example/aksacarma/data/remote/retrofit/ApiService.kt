@@ -9,22 +9,24 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+    @FormUrlEncoded
     @POST("register")
     fun registerUser(
-        @Query("username") username: String,
-        @Query("password") password: String,
-        @Query("name") name: String,
-        @Query("avatar_url") avatar: String
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("name") name: String,
+        @Field("avatar_url") avatar: String
     ) : Call<RegisterResponse>
 
+    @FormUrlEncoded
     @POST("login")
     fun loginUser(
-        @Query("username") username: String,
-        @Query("password") password: String
+        @Field("username") username: String,
+        @Field("password") password: String
     ): Call<LoginResponse>
 
     @Multipart
-    @POST("stories")
+    @POST("get_disease_name")
     fun uploadImage(
         @Header("api-key") token: String,
         @Part file: MultipartBody.Part

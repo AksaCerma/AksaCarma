@@ -8,15 +8,24 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import com.example.aksacarma.helper.createTempFile
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.aksacarma.databinding.ActivityCameraBinding
+import com.example.aksacarma.helper.reduceImageSize
 import com.example.aksacarma.helper.rotateImageIfRequired
 import com.example.aksacarma.helper.uriToFile
+import com.example.aksacarma.ui.ViewModelFactory
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class CameraActivity : AppCompatActivity() {
@@ -24,16 +33,20 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private lateinit var photoPath: String
     private var getFile: File? = null
+    private lateinit var factory: ViewModelFactory
+    private val cameraViewModel: CameraViewModel by viewModels { factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupViewModel()
 
         binding.apply {
             buttonCamera.setOnClickListener { startTakePhoto() }
             buttonGallery.setOnClickListener { openGallery() }
-//            buttonUpload.setOnClickListener { uploadImage()}
+            buttonDetection.setOnClickListener { uploadImage()}
         }
         if (!allPermissionGranted()) {
             ActivityCompat.requestPermissions(
@@ -104,6 +117,60 @@ class CameraActivity : AppCompatActivity() {
     private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
+
+    private fun uploadImage() {
+        showLoading()
+        cameraViewModel.getUser().observe(this@CameraActivity) {
+            if (getFile != null) {
+                val file = reduceImageSize(getFile as File)
+                val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                    name = "photo",
+                   filename = file.name,
+                    body = requestImageFile
+                )
+                uploadResponse(
+                    it.token,
+                    imageMultipart,
+                )
+            }
+        }
+    }
+
+    private fun uploadResponse(token: String, file: MultipartBody.Part) {
+        cameraViewModel.uploadImage(token, file)
+        cameraViewModel.predictionResponse.observe(this@CameraActivity) {
+            if (!it.error) {
+//                moveActivity()
+            }
+        }
+        showToast()
+    }
+
+//    private fun moveActivity() {
+//        val intent = Intent(this@CameraActivity, Res::class.java)
+//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//        startActivity(intent)
+//        finish()
+//    }
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(this)
+    }
+
+    private fun showToast() {
+        cameraViewModel.textToast.observe(this) {
+            it.getContentIfNotHandled()?.let { message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun showLoading() {
+        cameraViewModel.isLoading.observe(this@CameraActivity) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
