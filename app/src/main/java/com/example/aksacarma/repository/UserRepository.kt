@@ -6,14 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.aksacarma.data.remote.response.LoginResponse
 import com.example.aksacarma.data.remote.response.PredictionResponse
+import com.example.aksacarma.data.remote.response.PredictionResult
 import com.example.aksacarma.data.remote.response.RegisterResponse
-import com.example.aksacarma.data.remote.retrofit.ApiConfig
 import com.example.aksacarma.data.remote.retrofit.ApiService
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.model.UserPreferences
 import com.example.aksacarma.ui.Event
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,11 +31,17 @@ class UserRepository constructor(
     private val _predictionResponse = MutableLiveData<PredictionResponse>()
     val predictionResponse: LiveData<PredictionResponse> = _predictionResponse
 
+    private val _predictionResult = MutableLiveData<PredictionResult>()
+    val predictionResult: LiveData<PredictionResult> = _predictionResult
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
 
     fun registerUser(username: String, password: String, name: String, avatar: String) {
         _isLoading.value = true
@@ -82,27 +87,51 @@ class UserRepository constructor(
         })
     }
 
-    fun uploadImage(token: String, file:MultipartBody.Part) {
+    fun uploadImage(token: String, image:MultipartBody.Part) {
         _isLoading.value = true
-        val client = apiService.uploadImage(token, file)
+        val client = apiService.uploadImage(token, image)
         client.enqueue(object : Callback<PredictionResponse> {
             override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-//                    _textToast.value = Event("Login Berhasil")
+                    _textToast.value = Event("Berhasil Mengirim Gambar")
                     _predictionResponse.value = response.body()
                 } else {
 //                    _textToast.value = Event("Gagal Login")
+                    _errorMessage.value = response.message()
                     Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
                 }
             }
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
                 _isLoading.value = false
+                _errorMessage.value = t.message
 //                _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
     }
+
+//    suspend fun getResult(token: String, prediction: String) {
+//        _isLoading.value = true
+//        val client = apiService.getResult(token, prediction)
+//        client.enqueue(object : Callback<PredictionResult> {
+//            override fun onResponse(call: Call<PredictionResult>, response: Response<PredictionResult>) {
+//                _isLoading.value = false
+//                if (response.isSuccessful) {
+//                    _textToast.value = Event("Login Berhasil")
+//                    _predictionResult.value = response.body()
+//                } else {
+//                    _textToast.value = Event("Gagal Login")
+//                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+//                }
+//            }
+//            override fun onFailure(call: Call<PredictionResult>, t: Throwable) {
+//                _isLoading.value = false
+//                _textToast.value = Event("Tidak Terhubung ke Internet")
+//                Log.e(TAG, "onFailure: ${t.message.toString()}")
+//            }
+//        })
+//    }
 
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()

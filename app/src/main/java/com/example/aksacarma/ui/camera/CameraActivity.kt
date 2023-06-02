@@ -21,6 +21,7 @@ import com.example.aksacarma.helper.reduceImageSize
 import com.example.aksacarma.helper.rotateImageIfRequired
 import com.example.aksacarma.helper.uriToFile
 import com.example.aksacarma.ui.ViewModelFactory
+import com.example.aksacarma.ui.result.ResultActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -120,39 +121,40 @@ class CameraActivity : AppCompatActivity() {
 
     private fun uploadImage() {
         showLoading()
-        cameraViewModel.getUser().observe(this@CameraActivity) {
+        cameraViewModel.getUser().observe(this@CameraActivity) { user ->
             if (getFile != null) {
                 val file = reduceImageSize(getFile as File)
                 val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                    name = "photo",
-                   filename = file.name,
-                    body = requestImageFile
+                    "image",
+                    file.name,
+                    requestImageFile
                 )
-                uploadResponse(
-                    it.token,
-                    imageMultipart,
+                val token = user.token
+                uploadResponse(token, imageMultipart,
                 )
             }
         }
     }
 
-    private fun uploadResponse(token: String, file: MultipartBody.Part) {
-        cameraViewModel.uploadImage(token, file)
+    private fun uploadResponse(token: String, image: MultipartBody.Part) {
+        cameraViewModel.uploadImage(token, image)
         cameraViewModel.predictionResponse.observe(this@CameraActivity) {
             if (!it.error) {
-//                moveActivity()
+                moveActivity()
             }
         }
         showToast()
     }
 
-//    private fun moveActivity() {
-//        val intent = Intent(this@CameraActivity, Res::class.java)
-//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(intent)
-//        finish()
-//    }
+
+    private fun moveActivity() {
+        val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
     private fun setupViewModel() {
         factory = ViewModelFactory.getInstance(this)
     }

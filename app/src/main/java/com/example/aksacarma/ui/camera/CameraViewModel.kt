@@ -16,9 +16,9 @@ class CameraViewModel(private val repository: UserRepository): ViewModel() {
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
 
-    fun uploadImage(token: String, file: MultipartBody.Part) {
+    fun uploadImage(token: String, image: MultipartBody.Part) {
         viewModelScope.launch {
-            repository.uploadImage(token, file)
+            repository.uploadImage(token, image)
         }
     }
 

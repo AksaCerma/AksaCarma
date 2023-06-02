@@ -2,10 +2,11 @@ package com.example.aksacarma.data.remote.retrofit
 
 import com.example.aksacarma.data.remote.response.LoginResponse
 import com.example.aksacarma.data.remote.response.PredictionResponse
+import com.example.aksacarma.data.remote.response.PredictionResult
 import com.example.aksacarma.data.remote.response.RegisterResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -26,9 +27,16 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @Multipart
-    @POST("get_disease_name")
+    @POST("get-disease-name")
     fun uploadImage(
-        @Header("api-key") token: String,
-        @Part file: MultipartBody.Part
+        @Header("token") token: String,
+        @Part image: MultipartBody.Part
     ): Call<PredictionResponse>
+
+    @GET("get-disease-name")
+    suspend fun getResult(
+        @Header("token") token: String,
+        @Query("prediction") prediction: String,
+    ): Response<PredictionResult>
+
 }

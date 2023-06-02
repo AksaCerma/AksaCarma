@@ -1,12 +1,9 @@
 package com.example.aksacarma.ui.login
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.aksacarma.R
@@ -74,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
             getLoginUser(
                 UserModel(
                     response.loginResult?.name.toString(),
-                    AUTH_KEY + (response.loginResult?.token.toString()),
+                    (response.loginResult?.token.toString()),
                     true
                 )
             )
@@ -106,9 +103,5 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.isLoading.observe(this@LoginActivity) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
-    }
-
-    companion object {
-        private const val AUTH_KEY = "Bearer "
     }
 }
