@@ -143,13 +143,17 @@ class CameraActivity : AppCompatActivity() {
                 moveActivity()
             }
         }
+        cameraViewModel.predictionResponse.observe(this@CameraActivity) {
+            if (!it.error) {
+                moveActivity()
+            }
+        }
         showToast()
     }
 
 
     private fun moveActivity() {
         val intent = Intent(this@CameraActivity, ResultActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()
     }

@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.aksacarma.di.Injection
 import com.example.aksacarma.repository.UserRepository
 import com.example.aksacarma.ui.camera.CameraViewModel
+import com.example.aksacarma.ui.history.HistoryViewModel
 import com.example.aksacarma.ui.home.HomeViewModel
 import com.example.aksacarma.ui.login.LoginViewModel
 import com.example.aksacarma.ui.main.MainViewModel
 import com.example.aksacarma.ui.profile.ProfileViewModel
 import com.example.aksacarma.ui.register.RegisterViewModel
+import com.example.aksacarma.ui.result.ResultViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -34,6 +36,12 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(CameraViewModel::class.java) -> {
                 CameraViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
+                ResultViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+                HistoryViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

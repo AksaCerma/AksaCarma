@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUser() {
-//        showLoading()
         mainViewModel.getUser().observe(this@MainActivity) {
             mToken = it.token
             if (!it.isLogin) {
@@ -71,11 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private fun showLoading() {
-//        mainViewModel.isLoading.observe(this@LoginActivity) { isLoading ->
-//            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-//        }
-//    }
 
     companion object {
         var mToken = "token"

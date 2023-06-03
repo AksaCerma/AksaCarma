@@ -31,6 +31,7 @@ class ProfileFragment : Fragment() {
         return root
     }
 
+
     private fun setupUser() {
 //        showLoading()
         profileViewModel.getUser().observe(viewLifecycleOwner) {profileUser ->

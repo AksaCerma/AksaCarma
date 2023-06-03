@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
-import com.example.aksacarma.data.remote.response.LoginResponse
-import com.example.aksacarma.data.remote.response.PredictionResponse
-import com.example.aksacarma.data.remote.response.PredictionResult
-import com.example.aksacarma.data.remote.response.RegisterResponse
+import com.example.aksacarma.data.remote.response.*
 import com.example.aksacarma.data.remote.retrofit.ApiService
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.model.UserPreferences
@@ -33,6 +30,9 @@ class UserRepository constructor(
 
     private val _predictionResult = MutableLiveData<PredictionResult>()
     val predictionResult: LiveData<PredictionResult> = _predictionResult
+
+    private val _historyResponse = MutableLiveData<List<HistoryResponseItem>>()
+    val historyResponse : LiveData<List<HistoryResponseItem>> = _historyResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -75,7 +75,7 @@ class UserRepository constructor(
                     _textToast.value = Event("Login Berhasil")
                     _loginResponse.value = response.body()
                 } else {
-                    _textToast.value = Event("Gagal Login")
+                    _textToast.value = Event("Username atau password salah!")
                     Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
                 }
             }
@@ -111,27 +111,32 @@ class UserRepository constructor(
         })
     }
 
-//    suspend fun getResult(token: String, prediction: String) {
-//        _isLoading.value = true
-//        val client = apiService.getResult(token, prediction)
-//        client.enqueue(object : Callback<PredictionResult> {
-//            override fun onResponse(call: Call<PredictionResult>, response: Response<PredictionResult>) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    _textToast.value = Event("Login Berhasil")
-//                    _predictionResult.value = response.body()
-//                } else {
+    fun getHistory(token: String) {
+        _isLoading.value = true
+        val client = apiService.getHistoryUser(token)
+        client.enqueue(object : Callback<List<HistoryResponseItem>> {
+            override fun onResponse(
+                call: Call<List<HistoryResponseItem>>,
+                response: Response<List<HistoryResponseItem>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Mengirim Gambar")
+                    _historyResponse.value = response.body()
+                } else {
 //                    _textToast.value = Event("Gagal Login")
-//                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<PredictionResult>, t: Throwable) {
-//                _isLoading.value = false
+                    _errorMessage.value = response.message()
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<List<HistoryResponseItem>>, t: Throwable) {
+                _isLoading.value = false
 //                _textToast.value = Event("Tidak Terhubung ke Internet")
-//                Log.e(TAG, "onFailure: ${t.message.toString()}")
-//            }
-//        })
-//    }
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
 
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()

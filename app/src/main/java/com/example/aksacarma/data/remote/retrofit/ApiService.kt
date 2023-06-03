@@ -1,9 +1,6 @@
 package com.example.aksacarma.data.remote.retrofit
 
-import com.example.aksacarma.data.remote.response.LoginResponse
-import com.example.aksacarma.data.remote.response.PredictionResponse
-import com.example.aksacarma.data.remote.response.PredictionResult
-import com.example.aksacarma.data.remote.response.RegisterResponse
+import com.example.aksacarma.data.remote.response.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Response
@@ -33,9 +30,9 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): Call<PredictionResponse>
 
-    @GET("get-disease-name")
-    suspend fun getResult(
+    @GET("get-user-history")
+    fun getHistoryUser(
         @Header("token") token: String,
-    ): Response<PredictionResult>
+    ): Call<List<HistoryResponseItem>>
 
 }

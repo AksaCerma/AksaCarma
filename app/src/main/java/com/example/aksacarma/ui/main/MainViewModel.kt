@@ -8,7 +8,6 @@ import com.example.aksacarma.ui.Event
 import com.example.aksacarma.ui.ViewModelFactory
 
 class MainViewModel(private val repository: UserRepository): ViewModel() {
-    val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
 
     fun getUser(): LiveData<UserModel> {

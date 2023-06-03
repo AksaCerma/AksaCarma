@@ -26,6 +26,10 @@ class LoginViewModel(private val repository: UserRepository): ViewModel() {
         }
     }
 
+    fun getUser(): LiveData<UserModel> {
+        return repository.getUser()
+    }
+
     fun getToken() {
         viewModelScope.launch {
             repository.getToken()
