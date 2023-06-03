@@ -131,8 +131,7 @@ class CameraActivity : AppCompatActivity() {
                     requestImageFile
                 )
                 val token = user.token
-                uploadResponse(token, imageMultipart,
-                )
+                uploadResponse(token, imageMultipart,)
             }
         }
     }

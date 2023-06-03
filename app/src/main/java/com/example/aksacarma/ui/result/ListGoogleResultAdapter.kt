@@ -1,4 +1,4 @@
 package com.example.aksacarma.ui.result
 
-class ListGoogleResult {
+class ListGoogleResultAdapter {
 }

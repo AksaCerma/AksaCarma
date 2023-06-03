@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewModel()
-        setUpUser()
+        setupUser()
 
         val navView: BottomNavigationView = binding.navView
 
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         factory = ViewModelFactory.getInstance(this)
     }
 
-    private fun setUpUser() {
+    private fun setupUser() {
 //        showLoading()
         mainViewModel.getUser().observe(this@MainActivity) {
             mToken = it.token

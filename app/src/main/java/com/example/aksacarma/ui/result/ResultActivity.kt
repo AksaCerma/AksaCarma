@@ -2,7 +2,6 @@ package com.example.aksacarma.ui.result
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.aksacarma.R
 import com.example.aksacarma.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {

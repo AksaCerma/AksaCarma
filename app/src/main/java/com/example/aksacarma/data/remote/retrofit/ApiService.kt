@@ -36,7 +36,6 @@ interface ApiService {
     @GET("get-disease-name")
     suspend fun getResult(
         @Header("token") token: String,
-        @Query("prediction") prediction: String,
     ): Response<PredictionResult>
 
 }
