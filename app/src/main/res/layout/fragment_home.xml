@@ -7,26 +7,35 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
+        android:id="@+id/textViewHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/initial_hello"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <TextView
         android:id="@+id/textViewInitial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/initial_name"
-        android:layout_marginStart="8dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <ImageView
         android:id="@+id/imageViewAvatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="300dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/round_account_box_24"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewInitial"
-        app:layout_constraintStart_toStartOf="@+id/textViewInitial"
-        app:layout_constraintTop_toTopOf="@+id/textViewInitial" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -35,18 +44,19 @@
         android:src="@drawable/banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
+        android:contentDescription="@string/imageView_banner" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible"/>
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:visibility="visible" />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -61,5 +71,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="371dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

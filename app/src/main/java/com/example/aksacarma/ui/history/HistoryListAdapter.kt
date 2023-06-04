@@ -17,7 +17,7 @@ class HistoryListAdapter(private val listHistory: List<HistoryResponseItem>):Rec
                 textViewName.text = history.prediction
                 Glide.with(itemView.context)
                     .load(history.imageUrl)
-                    .error(R.drawable.outline_account_circle_24)
+                    .error(R.drawable.outline_account_circle)
                     .into(imageViewImage)
             }
         }

@@ -8,14 +8,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:contentDescription="@string/image_logo"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:text="@string/textView_login"
+            android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="30sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
@@ -55,6 +54,7 @@
                 android:id="@+id/inputTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,6 +79,7 @@
                 android:id="@+id/inputTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +90,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/button_login"
-            android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/login_desc"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/buttonLogin"
             app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
@@ -109,13 +111,13 @@
             android:id="@+id/textviewRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/textView_register"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:textColor="@color/primary"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+            app:layout_constraintBottom_toBottomOf="@+id/textviewLoginDesc"
+            app:layout_constraintStart_toEndOf="@+id/textviewLoginDesc"
+            app:layout_constraintTop_toTopOf="@+id/textviewLoginDesc" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -126,13 +128,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="258dp" />
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

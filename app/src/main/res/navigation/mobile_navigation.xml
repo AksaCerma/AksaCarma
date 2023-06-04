@@ -15,7 +15,7 @@
         android:id="@+id/navigation_camera"
         android:name="com.example.aksacarma.ui.camera.CameraActivity"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/activity_camera"/>
 
     <fragment
         android:id="@+id/navigation_history"

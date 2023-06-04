@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/result_detection"
+            android:textSize="18sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +30,9 @@
             android:text="@string/name_disease"
             android:layout_marginStart="4dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
             android:textStyle="bold"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
             app:layout_constraintStart_toEndOf="@+id/textViewTitle"
             app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
@@ -37,7 +41,7 @@
             android:id="@+id/recyclerViewResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/textViewResult"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

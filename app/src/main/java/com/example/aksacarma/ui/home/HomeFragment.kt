@@ -43,8 +43,7 @@ class HomeFragment : Fragment() {
 
     private fun setProfileData(user: UserModel) {
         binding.apply {
-            val name = user.name
-            textViewInitial.text = resources.getString(R.string.initial_name, name)
+            textViewInitial.text = user.name
         }
     }
 

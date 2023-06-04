@@ -1,5 +1,7 @@
 package com.example.aksacarma.ui.result
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +19,13 @@ class ListGoogleResultAdapter(private val listHistory: List<GoogleResultItem>):R
                 textViewDesc.text = result.description
                 Glide.with(itemView.context)
                     .load(result.imageUrl)
-                    .error(R.drawable.outline_account_circle_24)
+                    .error(R.drawable.custom_picture_color)
                     .into(circleImage)
+            }
+            binding.textViewTitleResult.setOnClickListener {
+                val url = result.url
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                itemView.context.startActivity(intent)
             }
         }
     }

@@ -40,9 +40,8 @@ class ResultActivity : AppCompatActivity() {
 
     private fun getPredictionResult(predictionResult: PredictionResult) {
         binding.apply {
-            binding.textViewResult.text = predictionResult.prediction
-            binding.recyclerViewResult.adapter = ListGoogleResultAdapter(predictionResult.googleResult)
-
+            textViewResult.text = predictionResult.prediction
+            recyclerViewResult.adapter = ListGoogleResultAdapter(predictionResult.googleResult)
         }
     }
 

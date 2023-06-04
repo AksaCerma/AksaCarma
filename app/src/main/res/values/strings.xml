@@ -18,21 +18,23 @@
     <string name="password_error">Minimal 8 karakter password</string>
     //home
     <string name="title_home">Home</string>
-    <string name="title_camera">Kamera</string>
+    <string name="title_camera">Detection</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
     <string name="profile_name">Nama Profile</string>
-    <string name="initial_name">Hi, %1$s</string>
+    <string name="initial_name">My Name</string>
+    <string name="initial_hello">Hallo</string>
     <string name="profile_username">Nama Username</string>
     <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
     <string name="button_camera">Ambil Dari Kamera</string>
     <string name="button_galery">Ambil Dari Galery</string>
     //list
-    <string name="history_prediction">Prediksi</string>
+    <string name="history_detection">Deteksi</string>
     <string name="desc_article">Deskripsi</string>
     <string name="title_result">Title</string>
     <string name="description_result">Herpes adalah kelompok virus yang dapat menyebabkan infeksi. Infeksi virus herpes umumnya ditandai dengan kulit kering, luka lepuh,</string>
     <string name="history_time">2023_06_02 07:23:41</string>
     <string name="result_detection">Hasil Deteksi : </string>
     <string name="name_disease">Nama Penyakit</string>
+    <string name="imageView_banner">banner</string>
 </resources>

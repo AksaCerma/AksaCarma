@@ -43,11 +43,12 @@
             android:layout_marginTop="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="@+id/imageViewImage"
             card_view:layout_constraintStart_toStartOf="@+id/imageViewImage"
             card_view:layout_constraintTop_toBottomOf="@+id/imageViewImage"
-            tools:text="@string/history_prediction" />
+            tools:text="@string/history_detection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
