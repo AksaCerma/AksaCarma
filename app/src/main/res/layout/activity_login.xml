@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,10 +51,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitleLogin">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.example.aksacarma.ui.custom.CustomEditText
                 android:id="@+id/inputTextUsername"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,14 +75,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldEmail">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.example.aksacarma.ui.custom.CustomEditText
                 android:id="@+id/inputTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <Button
             android:id="@+id/buttonLogin"
@@ -95,7 +94,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
-
 
         <TextView
             android:id="@+id/textviewLoginDesc"

@@ -36,7 +36,7 @@ class HistoryFragment : Fragment() {
             getResult(it.token)
         }
 
-         binding.recyclerViewHistory.adapter = HistoryListAdapter(emptyList())
+        binding.recyclerViewHistory.adapter = HistoryListAdapter(emptyList())
         showRecyclerView()
     }
 

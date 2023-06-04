@@ -13,3 +13,12 @@ data class PredictionResponse(
 	@field:SerializedName("message")
 	val message: String
 )
+
+data class PredictionResult(
+
+	@field:SerializedName("google_result")
+	val googleResult: List<GoogleResultItem>,
+
+	@field:SerializedName("prediction")
+	val prediction: String
+)

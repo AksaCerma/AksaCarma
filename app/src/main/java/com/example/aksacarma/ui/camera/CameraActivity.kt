@@ -22,10 +22,8 @@ import com.example.aksacarma.helper.rotateImageIfRequired
 import com.example.aksacarma.helper.uriToFile
 import com.example.aksacarma.ui.ViewModelFactory
 import com.example.aksacarma.ui.result.ResultActivity
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 

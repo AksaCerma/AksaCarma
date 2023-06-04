@@ -14,6 +14,7 @@
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
     <string name="textView_register">Register</string>
     <string name="error_textField">Isi terlebih dahulu</string>
+    <string name="email_error">Masukkan alamat email yang valid!</string>
     <string name="password_error">Minimal 8 karakter password</string>
     //home
     <string name="title_home">Home</string>
@@ -29,8 +30,9 @@
     //list
     <string name="history_prediction">Prediksi</string>
     <string name="desc_article">Deskripsi</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_result">Title</string>
     <string name="description_result">Herpes adalah kelompok virus yang dapat menyebabkan infeksi. Infeksi virus herpes umumnya ditandai dengan kulit kering, luka lepuh,</string>
     <string name="history_time">2023_06_02 07:23:41</string>
+    <string name="result_detection">Hasil Deteksi : </string>
+    <string name="name_disease">Nama Penyakit</string>
 </resources>

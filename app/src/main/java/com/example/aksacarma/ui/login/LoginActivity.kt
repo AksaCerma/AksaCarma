@@ -1,5 +1,6 @@
 package com.example.aksacarma.ui.login
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -56,7 +57,6 @@ class LoginActivity : AppCompatActivity() {
                startActivity(intent)
            }
        }
-
     }
 
     private fun postText() {
@@ -67,13 +67,13 @@ class LoginActivity : AppCompatActivity() {
             )
         }
 
-        loginViewModel.loginResponse.observe(this@LoginActivity) { response ->
+        loginViewModel.loginResponse.observe(this@LoginActivity) {
             getLoginUser(
                 UserModel(
-                    response.loginResult?.username.toString(),
-                    response.loginResult?.name.toString(),
-                    response.loginResult?.avatarUrl.toString(),
-                    response.loginResult?.token.toString(),
+                    it.loginResult?.username.toString(),
+                    it.loginResult?.name.toString(),
+                    "",
+                    it.loginResult?.token.toString(),
                     true
                 )
             )
@@ -85,8 +85,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun moveActivity() {
-        loginViewModel.loginResponse.observe(this@LoginActivity) {response ->
-            if (!response.error) {
+        loginViewModel.loginResponse.observe(this@LoginActivity) {
+            if (!it.error) {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             }
@@ -104,6 +104,14 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoading() {
         loginViewModel.isLoading.observe(this@LoginActivity) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
+    companion object {
+        fun start(context: Context) {
+            Intent(context, MainActivity::class.java).apply {
+                context.startActivity(this)
+            }
         }
     }
 }

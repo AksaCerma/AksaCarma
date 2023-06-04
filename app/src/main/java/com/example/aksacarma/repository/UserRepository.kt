@@ -121,7 +121,6 @@ class UserRepository constructor(
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _textToast.value = Event("Berhasil Mengirim Gambar")
                     _historyResponse.value = response.body()
                 } else {
 //                    _textToast.value = Event("Gagal Login")
@@ -131,12 +130,11 @@ class UserRepository constructor(
             }
             override fun onFailure(call: Call<List<HistoryResponseItem>>, t: Throwable) {
                 _isLoading.value = false
-//                _textToast.value = Event("Tidak Terhubung ke Internet")
+                _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
     }
-
 
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()
