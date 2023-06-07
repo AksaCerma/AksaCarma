@@ -44,23 +44,6 @@ fun uriToFile(selectedImage: Uri, context: Context): File {
     return localFile
 }
 
-fun rotateImageIfRequired(bitmap: Bitmap, photoPath: String?): Bitmap {
-    val exif = if (photoPath != null) ExifInterface(photoPath) else null
-    if (exif != null) {
-        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
-        val matrix = Matrix()
-        when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.setRotate(90f)
-            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.setRotate(180f)
-            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.setRotate(270f)
-            else -> return bitmap
-        }
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-    } else {
-        return bitmap
-    }
-}
-
 fun reduceImageSize(file: File): File {
     val imageCompress = BitmapFactory.decodeFile(file.path)
     var imageCompressQuality = 100

@@ -1,7 +1,7 @@
 package com.example.aksacarma.ui.result
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,22 +10,23 @@ import com.example.aksacarma.R
 import com.example.aksacarma.data.remote.response.GoogleResultItem
 import com.example.aksacarma.databinding.ItemRowGoogleResultBinding
 
-class ListGoogleResultAdapter(private val listHistory: List<GoogleResultItem>):RecyclerView.Adapter<ListGoogleResultAdapter.ListViewHolder>() {
+class ListGoogleResultAdapter(private val listHistory: List<GoogleResultItem>): RecyclerView.Adapter<ListGoogleResultAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemRowGoogleResultBinding):RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SuspiciousIndentation")
         fun bind(result: GoogleResultItem) {
             binding.apply {
                textViewTitleResult.text = result.title
                 textViewDesc.text = result.description
                 Glide.with(itemView.context)
                     .load(result.imageUrl)
-                    .error(R.drawable.custom_picture_color)
+                    .error(R.drawable.logo_result)
                     .into(circleImage)
-            }
-            binding.textViewTitleResult.setOnClickListener {
-                val url = result.url
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                itemView.context.startActivity(intent)
+                textViewTitleResult.setOnClickListener {
+                    val intent = Intent(textViewTitleResult.context, GoogleResultActivity::class.java)
+                      intent.putExtra("url", result.url)
+                      textViewTitleResult.context.startActivity(intent)
+                }
             }
         }
     }

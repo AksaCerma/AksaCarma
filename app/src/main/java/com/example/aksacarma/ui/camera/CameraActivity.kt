@@ -1,26 +1,20 @@
 package com.example.aksacarma.ui.camera
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
-import com.example.aksacarma.helper.createTempFile
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
+import com.canhub.cropper.*
 import com.example.aksacarma.databinding.ActivityCameraBinding
 import com.example.aksacarma.helper.reduceImageSize
-import com.example.aksacarma.helper.rotateImageIfRequired
 import com.example.aksacarma.helper.uriToFile
 import com.example.aksacarma.ui.ViewModelFactory
+import com.example.aksacarma.ui.home.HomeFragment
 import com.example.aksacarma.ui.result.ResultActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -30,7 +24,6 @@ import java.io.File
 class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
-    private lateinit var photoPath: String
     private var getFile: File? = null
     private lateinit var factory: ViewModelFactory
     private val cameraViewModel: CameraViewModel by viewModels { factory }
@@ -40,10 +33,10 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
         setupViewModel()
 
         binding.apply {
-            buttonCamera.setOnClickListener { startTakePhoto() }
             buttonGallery.setOnClickListener { openGallery() }
             buttonDetection.setOnClickListener { uploadImage()}
         }
@@ -54,54 +47,38 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-    private val launchGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val selectedImage: Uri = result.data?.data as Uri
-            val localFile = uriToFile(selectedImage, this)
-
-            getFile = localFile
-            binding.imageViewPost.setImageURI(selectedImage)
+    private fun setupView() {
+        binding.toolbarDetection.imageViewBack.setOnClickListener {
+            val fragment = HomeFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view_tag, fragment)
+                .commit()
         }
     }
+
+    private val cropActivityResultLauncher =
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                val selectedImage = result.uriContent
+                val localFile = selectedImage?.let { uriToFile(it, this) }
+
+                getFile = localFile
+                binding.imageViewPost.setImageURI(selectedImage)
+            } else {
+                Toast.makeText(this, "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     private fun openGallery() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "image/*"
-        val chooseImage = Intent.createChooser(intent, "Pilih Gambar")
-        launchGallery.launch(chooseImage)
+        cropActivityResultLauncher.launch(
+            options {
+                setGuidelines(CropImageView.Guidelines.ON)
+                setAspectRatio(1,1)
+                setFixAspectRatio(true)
+            }
+        )
     }
 
-    private val launchCamera = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == RESULT_OK) {
-            val localFile = File(photoPath)
-            getFile = localFile
-
-            val photoResult = BitmapFactory.decodeFile(getFile?.path)
-            val rotatedPhotoResult = rotateImageIfRequired(photoResult, getFile?.path)
-            binding.imageViewPost.setImageBitmap(rotatedPhotoResult)
-        }
-    }
-
-
-    @SuppressLint("QueryPermissionsNeeded")
-    private fun startTakePhoto() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(packageManager)
-
-       createTempFile(application).also {
-           val photoURI: Uri = FileProvider.getUriForFile(
-               this@CameraActivity, "com.example.aksacarma", it
-           )
-            photoPath = it.absolutePath
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            launchCamera.launch(intent)
-        }
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -129,7 +106,7 @@ class CameraActivity : AppCompatActivity() {
                     requestImageFile
                 )
                 val token = user.token
-                uploadResponse(token, imageMultipart,)
+                uploadResponse(token, imageMultipart)
             }
         }
     }
@@ -152,6 +129,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun moveActivity() {
         val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+        intent.putExtra("photoPath", getFile?.path)
         startActivity(intent)
         finish()
     }
@@ -174,9 +152,14 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding
+    }
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+
     }
 }

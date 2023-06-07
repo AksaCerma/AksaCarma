@@ -26,15 +26,16 @@
     <string name="initial_hello">Hallo</string>
     <string name="profile_username">Nama Username</string>
     <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
-    <string name="button_camera">Ambil Dari Kamera</string>
-    <string name="button_galery">Ambil Dari Galery</string>
+    <string name="button_picture">Pilih Gambar</string>
     //list
     <string name="history_detection">Deteksi</string>
     <string name="desc_article">Deskripsi</string>
-    <string name="title_result">Title</string>
+    <string name="title_result">Hasil Deteksi</string>
+    <string name="title_google_result">Title</string>
     <string name="description_result">Herpes adalah kelompok virus yang dapat menyebabkan infeksi. Infeksi virus herpes umumnya ditandai dengan kulit kering, luka lepuh,</string>
     <string name="history_time">2023_06_02 07:23:41</string>
     <string name="result_detection">Hasil Deteksi : </string>
     <string name="name_disease">Nama Penyakit</string>
     <string name="imageView_banner">banner</string>
+    <string name="item_back">Back</string>
 </resources>

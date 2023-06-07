@@ -37,7 +37,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/circleImage"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/title_result" />
+            tools:text="@string/title_google_result" />
 
         <TextView
             android:id="@+id/textViewDesc"
