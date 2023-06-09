@@ -28,7 +28,7 @@
     <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
     <string name="button_picture">Pilih Gambar</string>
     //list
-    <string name="history_detection">Deteksi</string>
+    <string name="history_detection">Actinic keratosis basal cell carcinoma and other malignant lesions</string>
     <string name="desc_article">Deskripsi</string>
     <string name="title_result">Hasil Deteksi</string>
     <string name="title_google_result">Title</string>
@@ -36,6 +36,10 @@
     <string name="history_time">2023_06_02 07:23:41</string>
     <string name="result_detection">Hasil Deteksi : </string>
     <string name="name_disease">Nama Penyakit</string>
+    <string name="prediction_result_error">Penyakit Tidak Terdeteksi</string>
     <string name="imageView_banner">banner</string>
     <string name="item_back">Back</string>
+    <string name="google_result">Google Result</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

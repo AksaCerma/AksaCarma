@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 UserModel(
                     it.loginResult?.username.toString(),
                     it.loginResult?.name.toString(),
-                    "",
+                    it.loginResult?.avatarUrl.toString(),
                     it.loginResult?.token.toString(),
                     true
                 )

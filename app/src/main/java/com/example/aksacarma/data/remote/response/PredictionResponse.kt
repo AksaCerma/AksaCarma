@@ -17,8 +17,8 @@ data class PredictionResponse(
 data class PredictionResult(
 
 	@field:SerializedName("google_result")
-	val googleResult: List<GoogleResultItem>,
+	val googleResult: List<GoogleResultItem>? = null,
 
 	@field:SerializedName("prediction")
-	val prediction: String
+	val prediction: String? = null
 )

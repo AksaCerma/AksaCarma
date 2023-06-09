@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aksacarma.R
 import com.example.aksacarma.data.remote.response.PredictionResult
 import com.example.aksacarma.databinding.ActivityResultBinding
 import com.example.aksacarma.ui.ViewModelFactory
@@ -59,8 +61,24 @@ class ResultActivity : AppCompatActivity() {
 
     private fun getPredictionResult(predictionResult: PredictionResult) {
         binding.apply {
-            textViewResult.text = predictionResult.prediction
-            recyclerViewResult.adapter = ListGoogleResultAdapter(predictionResult.googleResult)
+            if (predictionResult.prediction != null) {
+                textViewResult.text = predictionResult.prediction
+            } else {
+                textViewResult.text = getString(R.string.prediction_result_error)
+            }
+            recyclerViewResult.adapter = predictionResult.googleResult?.let {
+                ListGoogleResultAdapter(
+                    it
+                )
+            }
+        }
+    }
+
+    private fun showToast() {
+        resultViewModel.textToast.observe(this) {
+            it.getContentIfNotHandled()?.let { message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

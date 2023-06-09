@@ -14,12 +14,12 @@ import com.example.aksacarma.databinding.ActivityCameraBinding
 import com.example.aksacarma.helper.reduceImageSize
 import com.example.aksacarma.helper.uriToFile
 import com.example.aksacarma.ui.ViewModelFactory
-import com.example.aksacarma.ui.home.HomeFragment
 import com.example.aksacarma.ui.result.ResultActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import com.example.aksacarma.ui.main.MainActivity
 
 class CameraActivity : AppCompatActivity() {
 
@@ -48,12 +48,10 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.toolbarDetection.imageViewBack.setOnClickListener {
-            val fragment = HomeFragment()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view_tag, fragment)
-                .commit()
-        }
+       binding.toolbarDetection.imageViewBack.setOnClickListener{
+           val intent = Intent(this@CameraActivity, MainActivity::class.java)
+           startActivity(intent)
+       }
     }
 
     private val cropActivityResultLauncher =

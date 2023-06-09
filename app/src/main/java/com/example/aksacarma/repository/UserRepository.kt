@@ -97,15 +97,14 @@ class UserRepository constructor(
                     _textToast.value = Event("Berhasil Mengirim Gambar")
                     _predictionResponse.value = response.body()
                 } else {
-//                    _textToast.value = Event("Gagal Login")
+                    _textToast.value = Event("Gagal Mengirim Gambar")
                     _errorMessage.value = response.message()
                     Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
                 }
             }
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
                 _isLoading.value = false
-                _errorMessage.value = t.message
-//                _textToast.value = Event("Tidak Terhubung ke Internet")
+                _textToast.value = Event("Bisa dicoba kembali")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
@@ -123,7 +122,7 @@ class UserRepository constructor(
                 if (response.isSuccessful) {
                     _historyResponse.value = response.body()
                 } else {
-//                    _textToast.value = Event("Gagal Login")
+                    _textToast.value = Event("Bisa dicoba kembali")
                     _errorMessage.value = response.message()
                     Log.e(TAG,"onFailure: ${response.message()}")
                 }

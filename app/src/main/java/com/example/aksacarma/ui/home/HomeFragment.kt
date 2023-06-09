@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.aksacarma.R
 import com.example.aksacarma.databinding.FragmentHomeBinding
-import com.example.aksacarma.databinding.FragmentProfileBinding
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.ui.ViewModelFactory
-import com.example.aksacarma.ui.profile.ProfileViewModel
-
 
 class HomeFragment : Fragment() {
 
@@ -35,7 +33,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUser() {
-//        showLoading()
         homeViewModel.getUser().observe(viewLifecycleOwner) {
             setProfileData(it)
         }
@@ -43,6 +40,10 @@ class HomeFragment : Fragment() {
 
     private fun setProfileData(user: UserModel) {
         binding.apply {
+            Glide.with(requireContext())
+                .load(user.avatar_url)
+                .error(R.drawable.round_account_box_24)
+                .into(imageViewAvatar)
             textViewInitial.text = user.name
         }
     }
