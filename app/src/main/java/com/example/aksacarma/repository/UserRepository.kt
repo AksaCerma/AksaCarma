@@ -34,14 +34,14 @@ class UserRepository constructor(
     private val _historyResponse = MutableLiveData<List<HistoryResponseItem>>()
     val historyResponse : LiveData<List<HistoryResponseItem>> = _historyResponse
 
+    private val _updateUserResponse = MutableLiveData<UpdateUserResponse>()
+    val updateUserResponse : LiveData<UpdateUserResponse> = _updateUserResponse
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
 
     fun registerUser(username: String, password: String, name: String, avatar: String) {
         _isLoading.value = true
@@ -98,7 +98,6 @@ class UserRepository constructor(
                     _predictionResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Gagal Mengirim Gambar")
-                    _errorMessage.value = response.message()
                     Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
                 }
             }
@@ -123,13 +122,34 @@ class UserRepository constructor(
                     _historyResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Bisa dicoba kembali")
-                    _errorMessage.value = response.message()
                     Log.e(TAG,"onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<List<HistoryResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun updateUser(token: String, image:MultipartBody.Part) {
+        _isLoading.value = true
+        val client = apiService.updateUser(token, image)
+        client.enqueue(object : Callback<UpdateUserResponse> {
+            override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Update Profile")
+                    _updateUserResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Update Profile")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Bisa dicoba kembali")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })

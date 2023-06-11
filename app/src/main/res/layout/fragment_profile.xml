@@ -1,71 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewAvatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guidelineVertical1"
-        tools:src="@tools:sample/avatars" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/profile_name"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar"
-        app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewAvatar" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineVertical1"
+            tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/textViewUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/profile_username"
-        android:textColor="@color/black"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewName"
-        app:layout_constraintStart_toStartOf="@+id/textViewName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewAvatar2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineVertical1"
+            tools:src="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/buttonLogout"
-        style="@style/buttonStyle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button_logout"
-        android:fontFamily="@font/poppins_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineVertical2" />
+        <ImageView
+            android:id="@+id/imageViewChangeAvatar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/baseline_camera_alt_24"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewAvatar2"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar2" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVertical1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="67dp" />
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/profile_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar"
+            app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewAvatar" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVertical2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="516dp" />
+        <TextView
+            android:id="@+id/textViewUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/profile_username"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textViewName"
+            app:layout_constraintStart_toStartOf="@+id/textViewName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
+        <Button
+            android:id="@+id/buttonLogout"
+            style="@style/buttonStyle"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_logout"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guidelineVertical2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="67dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="486dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

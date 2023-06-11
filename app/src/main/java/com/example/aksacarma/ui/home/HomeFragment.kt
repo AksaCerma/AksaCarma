@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.aksacarma.R
 import com.example.aksacarma.databinding.FragmentHomeBinding
+import com.example.aksacarma.model.Article
+import com.example.aksacarma.model.ArticleData
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.ui.ViewModelFactory
+import com.example.aksacarma.ui.history.HistoryListAdapter
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +36,12 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerViewArticle.adapter = ArticleListAdapter(ArticleData.article)
+        showRecyclerView()
+    }
+
     private fun setupUser() {
         homeViewModel.getUser().observe(viewLifecycleOwner) {
             setProfileData(it)
@@ -45,6 +55,13 @@ class HomeFragment : Fragment() {
                 .error(R.drawable.round_account_box_24)
                 .into(imageViewAvatar)
             textViewInitial.text = user.name
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding.recyclerViewArticle.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
         }
     }
 

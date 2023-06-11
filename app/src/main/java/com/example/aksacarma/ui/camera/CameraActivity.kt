@@ -116,11 +116,6 @@ class CameraActivity : AppCompatActivity() {
                 moveActivity()
             }
         }
-        cameraViewModel.predictionResponse.observe(this@CameraActivity) {
-            if (!it.error) {
-                moveActivity()
-            }
-        }
         showToast()
     }
 

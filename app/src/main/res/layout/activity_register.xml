@@ -28,7 +28,7 @@
             android:layout_marginTop="48dp"
             android:text="@string/textView_register"
             android:textAlignment="center"
-            android:textColor="@color/primary"
+            android:textColor="@color/black"
             android:textSize="30sp"
             android:fontFamily="@font/poppins_bold"
             app:layout_constraintEnd_toEndOf="parent"

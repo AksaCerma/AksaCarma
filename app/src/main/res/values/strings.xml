@@ -24,6 +24,7 @@
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
     <string name="initial_hello">Hallo</string>
+    <string name="initial_article">Article</string>
     <string name="profile_username">Nama Username</string>
     <string name="textview_camera">Silahkan masukkan gambar melalui galeri atau kamera. Lalu, klik Deteksi Kulit untuk mendeteksi penyakit kulit.</string>
     <string name="button_picture">Pilih Gambar</string>

@@ -13,7 +13,6 @@ class LoginViewModel(private val repository: UserRepository): ViewModel() {
     val loginResponse: LiveData<LoginResponse> = repository.loginResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
-    val errorMessage: LiveData<String> = repository.errorMessage
 
     fun loginUser (username: String, password: String) {
         viewModelScope.launch {

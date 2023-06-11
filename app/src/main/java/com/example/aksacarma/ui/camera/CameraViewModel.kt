@@ -3,7 +3,6 @@ package com.example.aksacarma.ui.camera
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aksacarma.data.remote.response.LoginResponse
 import com.example.aksacarma.data.remote.response.PredictionResponse
 import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.repository.UserRepository
