@@ -10,12 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.aksacarma.R
+import com.example.aksacarma.data.remote.response.UserData
 import com.example.aksacarma.databinding.FragmentHomeBinding
-import com.example.aksacarma.model.Article
 import com.example.aksacarma.model.ArticleData
-import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.ui.ViewModelFactory
-import com.example.aksacarma.ui.history.HistoryListAdapter
 
 class HomeFragment : Fragment() {
 
@@ -44,18 +42,26 @@ class HomeFragment : Fragment() {
 
     private fun setupUser() {
         homeViewModel.getUser().observe(viewLifecycleOwner) {
-            setProfileData(it)
+            setProfileData(it.token)
+        }
+        homeViewModel.userResponse.observe(viewLifecycleOwner) {
+            val userData = it.userData
+            getUserData(userData)
         }
     }
 
-    private fun setProfileData(user: UserModel) {
+    private fun getUserData(userData: UserData) {
         binding.apply {
             Glide.with(requireContext())
-                .load(user.avatar_url)
+                .load(userData.avatarUrl)
                 .error(R.drawable.round_account_box_24)
                 .into(imageViewAvatar)
-            textViewInitial.text = user.name
+            textViewInitial.text = userData.name
         }
+    }
+
+    private fun setProfileData(token: String) {
+        homeViewModel.getUserData(token)
     }
 
     private fun showRecyclerView() {

@@ -119,7 +119,6 @@ class CameraActivity : AppCompatActivity() {
         showToast()
     }
 
-
     private fun moveActivity() {
         val intent = Intent(this@CameraActivity, ResultActivity::class.java)
         intent.putExtra("photoPath", getFile?.path)

@@ -34,10 +34,15 @@ interface ApiService {
         @Header("token") token: String,
     ): Call<List<HistoryResponseItem>>
 
+    @GET("get-user-data")
+    fun getUserData(
+        @Header("token") token: String,
+    ): Call<UserResponse>
+
     @Multipart
     @POST("update-user")
     fun updateUser(
         @Header("token") token: String,
-        @Part image: MultipartBody.Part
+        @Part avatar_image: MultipartBody.Part
     ): Call<UpdateUserResponse>
 }

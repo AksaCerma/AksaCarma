@@ -34,6 +34,12 @@ class UserRepository constructor(
     private val _historyResponse = MutableLiveData<List<HistoryResponseItem>>()
     val historyResponse : LiveData<List<HistoryResponseItem>> = _historyResponse
 
+    private val _userResponse = MutableLiveData<UserResponse>()
+    val userResponse : LiveData<UserResponse> = _userResponse
+
+    private val _userDataResponse = MutableLiveData<UserData>()
+    val userDataResponse : LiveData<UserData> = _userDataResponse
+
     private val _updateUserResponse = MutableLiveData<UpdateUserResponse>()
     val updateUserResponse : LiveData<UpdateUserResponse> = _updateUserResponse
 
@@ -133,9 +139,33 @@ class UserRepository constructor(
         })
     }
 
-    fun updateUser(token: String, image:MultipartBody.Part) {
+    fun getUserData(token: String) {
         _isLoading.value = true
-        val client = apiService.updateUser(token, image)
+        val client = apiService.getUserData(token)
+        client.enqueue(object : Callback<UserResponse> {
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _userResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Bisa dicoba kembali")
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun updateUser(token: String, avatar_image:MultipartBody.Part) {
+        _isLoading.value = true
+        val client = apiService.updateUser(token, avatar_image)
         client.enqueue(object : Callback<UpdateUserResponse> {
             override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
                 _isLoading.value = false

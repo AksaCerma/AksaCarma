@@ -16,10 +16,10 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.example.aksacarma.R
+import com.example.aksacarma.data.remote.response.UserData
 import com.example.aksacarma.databinding.FragmentProfileBinding
 import com.example.aksacarma.helper.reduceImageSize
 import com.example.aksacarma.helper.uriToFile
-import com.example.aksacarma.model.UserModel
 import com.example.aksacarma.ui.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
         setupAction()
         binding.apply {
             imageViewChangeAvatar.setOnClickListener { openGallery() }
-//            buttonUpdateUser.setOnClickListener { updateUser()}
+            updateUser()
         }
         if (!allPermissionGranted()) {
             ActivityCompat.requestPermissions(
@@ -56,8 +56,23 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupUser() {
-        profileViewModel.getUser().observe(viewLifecycleOwner) {profileUser ->
-            setProfileData(profileUser)
+        profileViewModel.getUser().observe(viewLifecycleOwner) {
+            setUserData(it.token)
+        }
+        profileViewModel.userResponse.observe(viewLifecycleOwner) {
+            val userData = it.userData
+            getUserData(userData)
+        }
+    }
+
+    private fun getUserData(userData: UserData) {
+        binding.apply {
+           Glide.with(requireContext())
+                .load(userData.avatarUrl)
+                .error(R.drawable.outline_account_circle_24)
+                .into(imageViewAvatar)
+           textViewName.text = userData.name
+           textViewUsername.text =  userData.username
         }
     }
 
@@ -68,7 +83,7 @@ class ProfileFragment : Fragment() {
                 val localFile = selectedImage?.let { uriToFile(it, this.requireContext()) }
 
                 getFile = localFile
-                binding.imageViewAvatar2.setImageURI(selectedImage)
+                binding.imageViewAvatar.setImageURI(selectedImage)
             } else {
                 Toast.makeText(this.requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
             }
@@ -82,33 +97,14 @@ class ProfileFragment : Fragment() {
                 setFixAspectRatio(true)
             }
         )
-        updateUser()
     }
-
-
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (requestCode == ProfileFragment.REQUEST_CODE_PERMISSIONS) {
-//            if (!allPermissionGranted()) {
-//                Toast.makeText(this.requireActivity(),"Tidak mendapatkan permission.", Toast.LENGTH_SHORT).show()
-//                finish()
-//            }
-//        }
-//    }
 
     private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun setProfileData(user: UserModel) {
-        binding.apply {
-            Glide.with(requireContext())
-                .load(user.avatar_url)
-                .error(R.drawable.outline_account_circle_24)
-                .into(imageViewAvatar)
-            textViewUsername.text = user.username
-            textViewName.text = user.name
-        }
+    private fun setUserData(token: String) {
+        profileViewModel.getUserData(token)
     }
 
     private fun updateUser() {
@@ -117,7 +113,7 @@ class ProfileFragment : Fragment() {
                 val file = reduceImageSize(getFile as File)
                 val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                    "image",
+                    "avatar_image",
                     file.name,
                     requestImageFile
                 )
@@ -127,13 +123,13 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun updateResponse(token: String, image: MultipartBody.Part) {
-        profileViewModel.updateUser(token, image)
+    private fun updateResponse(token: String, avatar_image: MultipartBody.Part) {
+        profileViewModel.updateUser(token, avatar_image)
         profileViewModel.updateUserResponse.observe(viewLifecycleOwner) {
             if (!it.error) {
+                showToast()
             }
         }
-        showToast()
     }
 
     private fun setupAction() {

@@ -20,5 +20,12 @@ class GoogleResultActivity : AppCompatActivity() {
             webView.loadUrl("$url")
             webView.settings.javaScriptEnabled = true
         }
+        setupView()
+    }
+
+    private fun setupView() {
+        binding.toolbarGoogleResult.imageViewBack.setOnClickListener{
+            finish()
+        }
     }
 }
