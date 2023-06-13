@@ -1,8 +1,8 @@
 ![Group 14](https://github.com/AksaCerma/AksaCarma/assets/58899551/a51f83f1-e0d7-40a6-b36c-06e9eeed4cbc)
 
 ## AksaCarma - C23-PS410</h1>
-<h2>About The Project</h2>
 <hr>
+<h2>About The Project</h2>
 <p>
   This repository is for AksaCarma Mobile App for our project in capstone Bangkit Academy 2023. 
   This project is a graduation requirement in the Bangkit Academy 2023 program as a Mobile Developer Learning Path
