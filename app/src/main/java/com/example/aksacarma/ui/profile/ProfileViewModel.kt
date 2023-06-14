@@ -26,6 +26,12 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
+    fun updateUserData(token: String, username: String, password: String, name: String) {
+        viewModelScope.launch {
+            repository.updateDataUser(token, username, password, name)
+        }
+    }
+
     fun getUser(): LiveData<UserModel> {
         return repository.getUser()
     }

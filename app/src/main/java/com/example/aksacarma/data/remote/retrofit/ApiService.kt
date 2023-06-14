@@ -45,4 +45,13 @@ interface ApiService {
         @Header("token") token: String,
         @Part avatar_image: MultipartBody.Part
     ): Call<UpdateUserResponse>
+
+    @FormUrlEncoded
+    @POST("update-user")
+    fun updateDataUser(
+        @Header("token") token: String,
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("name") name: String
+    ): Call<UpdateUserResponse>
 }

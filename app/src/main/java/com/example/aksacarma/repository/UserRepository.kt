@@ -185,6 +185,28 @@ class UserRepository constructor(
         })
     }
 
+    fun updateDataUser(token: String, username: String, password: String, name: String) {
+        _isLoading.value = true
+        val client = apiService.updateDataUser(token, username, password, name)
+        client.enqueue(object : Callback<UpdateUserResponse> {
+            override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Update Profile")
+                    _updateUserResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Update Profile")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Bisa dicoba kembali")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()
     }

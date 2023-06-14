@@ -108,9 +108,8 @@
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/buttonRegister"
             style="@style/buttonStyle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -121,16 +120,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
 
-
         <TextView
-            android:id="@+id/textviewLoginDesc"
+            android:id="@+id/textviewRegisDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/register_desc"
             android:fontFamily="@font/poppins_medium"
-            app:layout_constraintStart_toStartOf="@+id/buttonLogin"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+            app:layout_constraintStart_toStartOf="@+id/buttonRegister"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
         <TextView
             android:id="@+id/textViewLogin"
@@ -140,9 +138,9 @@
             android:textColor="@color/primary"
             android:fontFamily="@font/poppins_bold"
             android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textviewLoginDesc"
-            app:layout_constraintStart_toEndOf="@+id/textviewLoginDesc"
-            app:layout_constraintTop_toTopOf="@+id/textviewLoginDesc" />
+            app:layout_constraintBottom_toBottomOf="@+id/textviewRegisDesc"
+            app:layout_constraintStart_toEndOf="@+id/textviewRegisDesc"
+            app:layout_constraintTop_toTopOf="@+id/textviewRegisDesc" />
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.apply {
-            buttonLogin.setOnClickListener {
+            buttonRegister.setOnClickListener {
                 val name = inputTextName.text.toString()
                 val email = inputTextUsername.text.toString()
                 val password = inputTextPassword.text.toString()
@@ -64,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun postText() {
-        val avatar = "https://img.freepik.com/free-photo/people-emotions-lifestyle-leisure-beauty-concept-upbeat-happy-cheerful-asian-girl-dancing-having-fun-partying-moving-rhythm-music-smiling-yellow-background_1258-58916.jpg"
+        val avatar = "https://cdn.jeyy.xyz/image/avatar_url_9f3ef1.png"
         binding.apply {
             registerViewModel.registerUser(
                 username = inputTextUsername.text.toString(),

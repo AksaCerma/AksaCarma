@@ -10,6 +10,7 @@
     <string name="button_detection">Deteksi Kulit</string>
     <string name="button_register">Register</string>
     <string name="button_logout">Logout</string>
+    <string name="button_save">Simpan</string>
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
     <string name="textView_register">Register</string>
@@ -21,6 +22,7 @@
     <string name="title_camera">Detection</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+    <string name="title_update">Update Profile</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
     <string name="initial_hello">Hallo</string>

@@ -1,5 +1,6 @@
 package com.example.aksacarma.ui.profile
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,6 +44,7 @@ class ProfileFragment : Fragment() {
 
         setupUser()
         setupAction()
+        setupView()
         binding.apply {
             imageViewChangeAvatar.setOnClickListener { openGallery() }
             updateUser()
@@ -53,6 +55,13 @@ class ProfileFragment : Fragment() {
             )
         }
         return root
+    }
+
+    private fun setupView() {
+        binding.toolbarProfile.imageViewSetting.setOnClickListener {
+            val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupUser() {
