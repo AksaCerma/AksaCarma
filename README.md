@@ -2,7 +2,7 @@
 
 ## AksaCarma - C23-PS410</h1>
 
-<h2>What Is AksaCarma?</h2>
+<h2>About AksaCarma</h2>
 <p>
 AksaCarma is a mobile app that helps users to identify different types of skin diseases and the app will also display information related to basic diseases and cures by displaying articles related to skin care to avoid harm. With this app, it is expected to help more people to care more about their skin, health, and well-being with easy access to detect skin diseases and also information about related diseases.
 </p>
@@ -13,18 +13,16 @@ AksaCarma is a mobile app that helps users to identify different types of skin d
   This repository is for AksaCarma Mobile App for our project in capstone Bangkit Academy 2023. 
   This project is a graduation requirement in the Bangkit Academy 2023 program as a Mobile Developer Learning Path
 </p>
-<hr>
 
+<hr>
 <h2>Project Contributor</h2>
 <p>
   In this project there are 2 main contributors who are also students from the learning path mobile development.
 </p>
 <ul>
-
 </ul>
 
 <hr>
-
 <h2>Build With</h2>
 <p>
   In this project using several technologies and libraries such as:
@@ -34,8 +32,9 @@ AksaCarma is a mobile app that helps users to identify different types of skin d
   <li><a href="https://kotlinlang.org/">Kotlin Prgramming Language</a></li>
   <li><a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM Architecture</a></li>
 </ul>
-
 <hr>
+
+
 <h2>Features</h2>
 <p>
   In this project there are 2 main contributors who are also students from the learning path mobile development.
@@ -46,3 +45,30 @@ AksaCarma is a mobile app that helps users to identify different types of skin d
   <li>Skin Disease Detection with Camera</li> 
   <li>History User Detection</li> 
 </ul>
+
+
+<hr>
+<h2>Installation</h2>
+
+* Clone this repo.
+
+  ```
+  git clone https://github.com/AksaCerma/AksaCarma.git
+  ```
+* Open in Android Studio
+* Connect your device into Android Studio. 
+
+  ```
+  https://developer.android.com/codelabs/basic-android-kotlin-compose-connect-device?hl=id#0
+  ```
+* Run in your Android Studio.
+
+  ```
+  https://developer.android.com/training/basics/firstapp/running-app?hl=id
+  ```
+* Download AksaCarma App.
+
+  ```
+  https://drive.google.com/file/d/1cFJLZ5GVvDn28Rkh_3VtoKRh35FT4hbB/view?usp=sharing
+  ```
+<hr>
