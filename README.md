@@ -46,9 +46,11 @@ AksaCarma is a mobile app that helps users to identify different types of skin d
   <li>History User Detection</li> 
 </ul>
 
+## Screenshots
 
-<hr>
-<h2>Installation</h2>
+<img src="screenshots/screenshots.png" alt="Screenshot">
+
+## Opening a sample in Android Studio
 
 * Clone this repo.
 
